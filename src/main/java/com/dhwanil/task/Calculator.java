@@ -2,6 +2,7 @@ package com.dhwanil.task;
 
 public class Calculator {
     public int Add(String numbers) {
-        return 0;
+        if (numbers.length() == 0) return 0;
+        else return Integer.parseInt(numbers);
     }
 }
