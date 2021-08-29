@@ -1,6 +1,7 @@
 package com.dhwanil.task;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,5 +41,15 @@ public class CalculatorTest {
     @Test
     public void DynamicDelimiters() {
         assertEquals(cal.Add("//;\n1;2"), 3);
+    }
+
+    @Test
+    public void NegativeNumberNotAllowed() {
+        try {
+            cal.Add("1,2,-3");
+            fail("Expected Exception");
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), "Negative Numbers not allowed: -3");
+        }
     }
 }
