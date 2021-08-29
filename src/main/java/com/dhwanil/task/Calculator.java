@@ -2,6 +2,11 @@ package com.dhwanil.task;
 
 public class Calculator {
 
+    /**
+     * Extract substrings containing numbers from input string.
+     * @param numbers
+     * @return
+     */
     public String[] split(String numbers) {
         String sep = ",";
         if (numbers.startsWith("//")) {
@@ -25,21 +30,39 @@ public class Calculator {
         return mainString;
     }
 
+    /**
+     * Parse String to Integers and checks for Negative Numbers
+     * @param numbers
+     * @return int array of numbers
+     * @throws RuntimeException
+     */
+    public int[] StringtoInt(String[] numbers) throws RuntimeException {
+        int[] result = new int[numbers.length];
+        String negNums = "";
+        for (int i=0; i < numbers.length; i++) {
+            result[i] = Integer.parseInt(numbers[i]);
+            if (result[i] < 0) {
+                if (negNums == "") {
+                    negNums = numbers[i];
+                }
+                else {
+                    negNums = String.join(",", negNums, numbers[i]);
+                }
+            }
+        }
+        if (negNums.length() != 0) {
+            throw new RuntimeException("Negative Numbers not allowed: " + negNums);
+        }
+        return result;
+    }
+
     public int Add(String numbers) {
         if (numbers.length() == 0) return 0;
         else {
-            String[] tokens = split(numbers);
+            int[] nums = StringtoInt(split(numbers));
             int sum = 0;
-            String negNums = "";
-            for (String str : tokens) {
-                int n = Integer.parseInt(str);
-                if (n < 0) {
-                    negNums = join(negNums, str, ",");
-                }
-                sum += n;
-            }
-            if (negNums.length() != 0) {
-                throw new RuntimeException("Negative Numbers not allowed: " + negNums);
+            for (int i=0; i<nums.length; i++) {
+                sum += nums[i];
             }
             return sum;
         }
