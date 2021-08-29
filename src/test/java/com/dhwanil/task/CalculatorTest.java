@@ -31,4 +31,9 @@ public class CalculatorTest {
         assertEquals(cal.Add("1,2"), 3);
         assertEquals(cal.Add("10,20,30,40,50"), 150);
     }
+
+    @Test
+    public void NewLineCharAsDelimiter() {
+        assertEquals(cal.Add("1\n2,3"), 6);
+    }
 }
