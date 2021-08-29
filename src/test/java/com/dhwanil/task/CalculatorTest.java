@@ -25,4 +25,10 @@ public class CalculatorTest {
     public void SingleNumberInput() {
         assertEquals(cal.Add("1"), 1);
     }
+
+    @Test
+    public void MultipleNumberInput() {
+        assertEquals(cal.Add("1,2"), 3);
+        assertEquals(cal.Add("10,20,30,40,50"), 150);
+    }
 }
