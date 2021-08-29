@@ -21,7 +21,11 @@ public class Calculator {
             String[] tokens = split(numbers);
             int sum = 0;
             for (String str : tokens) {
-                sum += Integer.parseInt(str);
+                int n = Integer.parseInt(str);
+                if (n < 0) {
+                    throw new RuntimeException("Negative Numbers not allowed: " + str);
+                }
+                sum += n;
             }
             return sum;
         }
