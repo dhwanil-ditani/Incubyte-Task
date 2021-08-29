@@ -15,17 +15,31 @@ public class Calculator {
         return numbers.replace("\n", sep).split(sep);
     }
 
+    public String join(String mainString, String joinString, String sep) {
+        if (mainString.length() == 0) {
+            mainString = joinString;
+        }
+        else {
+            mainString = String.join(sep, mainString, joinString);
+        }
+        return mainString;
+    }
+
     public int Add(String numbers) {
         if (numbers.length() == 0) return 0;
         else {
             String[] tokens = split(numbers);
             int sum = 0;
+            String negNums = "";
             for (String str : tokens) {
                 int n = Integer.parseInt(str);
                 if (n < 0) {
-                    throw new RuntimeException("Negative Numbers not allowed: " + str);
+                    negNums = join(negNums, str, ",");
                 }
                 sum += n;
+            }
+            if (negNums.length() != 0) {
+                throw new RuntimeException("Negative Numbers not allowed: " + negNums);
             }
             return sum;
         }
