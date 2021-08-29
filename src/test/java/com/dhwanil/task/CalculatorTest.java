@@ -20,4 +20,9 @@ public class CalculatorTest {
     public void EmptyStringInput() {
         assertEquals(cal.Add(""), 0);
     }
+
+    @Test
+    public void SingleNumberInput() {
+        assertEquals(cal.Add("1"), 1);
+    }
 }
